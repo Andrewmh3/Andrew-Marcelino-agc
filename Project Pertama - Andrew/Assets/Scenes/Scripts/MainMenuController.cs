@@ -9,8 +9,12 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
-    public void Author()
+    public void Credit()
     {
-        Debug.Log("Created by Dru");
+        SceneManager.LoadScene("Credit");
+    }
+    public void Mainmenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

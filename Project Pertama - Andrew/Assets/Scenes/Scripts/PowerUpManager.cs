@@ -8,6 +8,9 @@ public class PowerUpManager : MonoBehaviour
     public int MaxPowerUpAmount;
     public int SpawnInterval;
     public int DeleteInterval;
+
+    public float duration = 5f;
+
     public Vector2 PowerUpAreaMin;
     public Vector2 PowerUpAreaMax;
     public List<GameObject> PowerUpTemplateList;
@@ -24,15 +27,11 @@ public class PowerUpManager : MonoBehaviour
 
     private void Update()
     {
-        // timer add per second
         Timer += Time.deltaTime;
 
-        // timer sudah mencapai waktu yang telah ditentukan
-        if (Timer > SpawnInterval)
+        if (Timer >= SpawnInterval)
         {
-            // maka spawn powerup
             GenerateRandomPowerUp();
-            // reset waktu
             Timer -= SpawnInterval;
         }
     }

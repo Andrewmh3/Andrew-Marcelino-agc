@@ -7,6 +7,7 @@ public class PaddleController : MonoBehaviour
     public int speed;
     public KeyCode UpKey;
     public KeyCode DownKey;
+    public PowerUpManager manager;
 
     private Rigidbody2D rig;
 
@@ -42,5 +43,28 @@ public class PaddleController : MonoBehaviour
             rig.velocity = movement;
         }
 
+    public void ActivatePULongerPaddle()
+    {
+        StartCoroutine(Activatedlonger());
+    }
 
+    IEnumerator Activatedlonger()
+    {
+        transform.localScale += new Vector3(0, 2, 0);
+        yield return new WaitForSeconds(manager.duration);
+        transform.localScale -= new Vector3(0, 2, 0);
+    }
+   
+
+    public void ActivatePUPaddleSpeed()
+    {
+        StartCoroutine(Activatedspeed());
+    }
+
+    IEnumerator Activatedspeed()
+    {
+        speed *= 2;
+        yield return new WaitForSeconds(manager.duration);
+        speed /= 2;
+    }
 }

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    public PowerUpManager manager;
     public Vector2 speed;
     public Vector2 resetPosition;
+
+    public int speedup ;
+    public float timerspeedup;
 
     private Rigidbody2D rig;
 
@@ -15,15 +19,20 @@ public class BallController : MonoBehaviour
 
         rig.velocity = speed;
     }
-
     public void Resetball()
     {
         transform.position = resetPosition;
     }
 
-    public void ActivatePUSpeedUp(float magnitude)
+    public void ActivatePUSpeedUp(float magnitude) 
     {
-        rig.velocity *= magnitude;
+        StartCoroutine( Activated(magnitude));
     }
 
+    IEnumerator Activated(float magnitude)
+    {
+        rig.velocity *= 2;
+        yield return new WaitForSeconds(manager.duration);
+        rig.velocity /= 2;
+    }
 }
